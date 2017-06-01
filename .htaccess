@@ -1,0 +1,22 @@
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+Options -MultiViews
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /jprkopat/
+
+# html & htm to php
+RewriteRule ^(.*)\.html$ $1.php [L]
+RewriteRule ^(.*)\.htm$ $1.php [L]
+
+
+RewriteCond %{REQUEST_URI} !^/asset/ [NC]
+# jprkopat framework
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php
+</IfModule>
